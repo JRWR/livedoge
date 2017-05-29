@@ -14,35 +14,18 @@
 </head>
 <body>
   
-  
+<div id="exchangerate" name="crewdev"></div><br>
+<div id="exchangebuy" name="crewdev"></div><br>
+<div id="exchangesell" name="crewdev"></div><br>
+<div id="dogesent" name="crewdev"></div><br>
+<div id="dogetotalvolume" name="crewdev"></div><br>
+<div id="power" name="crewdev"></div><br>
+<div id="hashrate" name="crewdev"></div><br>
+<div id="totaldoge" name="crewdev"></div><br>
+<div id="totaldogeworth" name="crewdev"></div><br>
   
 <script type="text/javascript">
-
-var xrateconfig = {
-useEasing : true,
-useGrouping : true,
-separator : ',',
-decimal : '.',
-prefix : '',
-suffix : ' Hps'
-};
-var powerconfig = {
-useEasing : true,
-useGrouping : true,
-separator : ',',
-decimal : '.',
-prefix : '',
-suffix : ' W'
-};
-var dogesentconfig = {
-useEasing : true,
-useGrouping : true,
-separator : ',',
-decimal : '.',
-prefix : '',
-suffix : ''
-};
-var dogeamountconfig = {
+var dogeconfig = {
 useEasing : true,
 useGrouping : true,
 separator : ',',
@@ -51,21 +34,36 @@ prefix : '',
 suffix : ''
 };
 
-var crew = new CountUp("crewdev", 0, 1, 0, 2.5, options);
-var isk = new CountUp("iskdev", 0, 1, 2, 2.5, options2);
+
+var exchangerate = new CountUp("exchangerate", 0, 1, 0, 2.5, dogeconfig);
+var exchangebuy = new CountUp("exchangebuy", 0, 1, 0, 2.5, dogeconfig);
+var exchangesell = new CountUp("exchangesell", 0, 1, 0, 2.5, dogeconfig);
+var dogesent = new CountUp("dogesent", 0, 1, 0, 2.5, dogeconfig);
+var dogetotalvolume = new CountUp("dogetotalvolume", 0, 1, 0, 2.5, dogeconfig);
+var power = new CountUp("power", 0, 1, 0, 2.5, dogeconfig);
+var hashrate = new CountUp("hashrate", 0, 1, 0, 2.5, dogeconfig);
+var totaldoge = new CountUp("totaldoge", 0, 1, 0, 2.5, dogeconfig);
+var totaldogeworth = new CountUp("totaldogeworth", 0, 1, 0, 2.5, dogeconfig);
 
 function getStatus() {
 
     $.getJSON('https://jrwr.io/dogecoin.php', function(data) {
     isk.update(data.isk);
     crew.update(data.crew);
-    $('div#time').html(data.time);
-    });
-    setTimeout("getStatus()",5000);
+    setTimeout("getStatus()",1000);
 
 }
-isk.start();
-crew.start();
+
+exchangerate.start();
+exchangebuy.start();
+exchangesell.start();
+dogesent.start();
+dogetotalvolume.start();
+power.start();
+hashrate.start();
+totaldoge.start();
+totaldogeworth.start();
+
 $(function() {
   getStatus();
 });
