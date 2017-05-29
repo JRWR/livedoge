@@ -48,9 +48,9 @@ var totaldogeworth = new CountUp("totaldogeworth", 0, 1, 0, 2.5, dogeconfig);
 function getStatus() {
 
     $.getJSON('https://jrwr.io/dogecoin.php', function(data) {
-    isk.update(data.isk);
-    crew.update(data.crew);
-    setTimeout("getStatus()",1000);
+      power.update(data.power);
+      hashrate.update(data.mining.networkhashps);
+      setTimeout("getStatus()",1000);
 
 }
 
